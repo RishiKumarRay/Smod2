@@ -8,21 +8,19 @@ jobs:
     runs-on: windows-latest
 
     steps:
-    - uses: actions/checkout@v2.2.0
-      
-    - name: Setup .NET Core
-      uses: actions/setup-dotnet@v1.5.0
-      with:
-        dotnet-version: 3.1
+     - uses: actions/checkout@v2
+     - uses: actions/setup-dotnet@v1
+       with:
+        dotnet-version: '3.1.x' 
         
-    - name: Install dependencies
-      run: dotnet restore
+     - name: Install dependencies
+       run: dotnet restore
       
-    - name: Build
-      run: dotnet publish -c Release -o "${{github.workspace}}/Release"
+     - name: Build
+       run: dotnet publish -c Release -o "${{github.workspace}}/Release"
       
-    - name: Upload a Build Artifact
-      uses: actions/upload-artifact@v2.0.1
-      with:
+     - name: Upload a Build Artifact
+       uses: actions/upload-artifact@v2.0.1
+       with:
         name: Smod
         path: ${{github.workspace}}/Release
